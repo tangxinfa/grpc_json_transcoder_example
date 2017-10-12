@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -e
+
+cd $(dirname $0)/..
+
+rm -rf generated/*
+
+# generate the protobufs
+protoc --go_out=plugins=grpc:./gen \
+        -I../../../bazel-envoy/external/googleapis \
+        -I./protos ./protos/kv.proto
+
+protoc --python_out=./gen \
+        -I../../../bazel-envoy/external/googleapis \
+        -I./protos \
+        ./protos/kv.proto
+
+cp ./gen/kv_pb2.py ../client/

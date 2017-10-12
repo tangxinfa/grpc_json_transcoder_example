@@ -1,0 +1,11 @@
+FROM lyft/envoy:latest
+
+RUN apt-get update
+RUN apt-get -q install -y python-dev \
+    python-pip
+RUN pip install -q grpcio requests
+ADD ./client /client
+RUN chmod a+x /client/client.py
+RUN chmod a+x /client/client_json.py
+RUN mkdir /var/log/envoy/
+CMD /usr/local/bin/envoy -c /etc/s2s-python-envoy.json --log-level trace
