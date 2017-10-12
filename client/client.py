@@ -11,6 +11,7 @@ USAGE   = """
 envoy-python-client usage:
   ./client.py set <key> <value> - sets the <key> and <value>
   ./client.py get <key>         - gets the value for <key>
+  ./client.py count             - gets count of key-value multiple times
   """
 
 class KVClient():
@@ -23,7 +24,6 @@ class KVClient():
     def set(self, key, value):
         req = {"value": value}
         data = json.dumps(req)
-        print("set data:", data)
         return requests.put(HOST + "/kv/" + key, data=data, headers=HEADERS)
 
     def count(self):

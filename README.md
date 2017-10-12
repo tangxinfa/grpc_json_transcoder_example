@@ -25,8 +25,8 @@ grpc_json_transcoder example project based on grpc-bridge example project.
     
 5, Do request
 
-    docker-compose exec python /client/client_json.py set foo bar
-    docker-compose exec python /client/client_json.py get foo
-    docker-compose exec python /client/client_json.py count
+    docker-compose exec python /client/client.py set foo bar
+    docker-compose exec python /client/client.py get foo
+    docker-compose exec python /client/client.py count
 
 
